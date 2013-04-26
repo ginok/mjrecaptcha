@@ -56,22 +56,25 @@ new Pai();//これをしないとクラス変数が見えない。
 var mjrecaptcha;
 if (!mjrecaptcha) mjrecaptcha = {};
 (function(){
-    function display(){
-        $.ajax({
-            type: "GET",
-            url: "http://www.fedc.biz/cha.json",
-            //url: "http://mjrecaptcha.com/challenges.json",
-            dataType: "jsonp",
-            jsonpCallback: "callback",
-            success:on_get_challenge,
-            error: function(xhr,status,err){
-                alert("ajax error: " + xhr + status + err);
-            }
-        });
-    }
+    $.ajax({
+        type: "GET",
+        //url: "http://www.fedc.biz/cha.json",
+        url: "http://mjrecaptcha.com/challenges.json",
+        dataType: "jsonp",
+	    jsonpCallback: "callback",
+        success:on_get_challenge,
+        error: function(xhr,status,err){
+            alert("ajax error: " + xhr + status + err);
+        }
+    });
 
     function on_get_challenge(data){
-        $("#commentform").append(
+        $("#commentform")
+            .append($("<input/>")
+                    .attr({"type":"hidden",
+                           "name":"recaptcha_challenge_field",
+                           "value":data.token}))
+            .append(
             $("<table/>")
                 .append($("<tr/>")
                         .attr("id","mjrQuestionTr")
@@ -80,7 +83,7 @@ if (!mjrecaptcha) mjrecaptcha = {};
                 .append($("<tr/>")
                         .append($("<td/>")
                                 .attr("colspan",data.pai_positions.length)
-                                .html("何に見えますか？")
+                                .html("何のパイに見えますか？")
                                )
                        )
                 .append($("<tr/>")
@@ -88,7 +91,15 @@ if (!mjrecaptcha) mjrecaptcha = {};
                         .append(
                             $("<td/>")
                                 .attr("colspan",data.pai_positions.length)
-                                .append($("<input/>").attr("size",10).attr("name","response")))
+                                .append($("<input/>")
+                                        .attr({"size":10,
+                                               "value":"j7 p6",
+                                               "name":"recaptcha_response_field"
+                                              })
+                                       ))
+                       )
+                .append($("<tr/>")
+                        .attr("id","mjrButtonTr")
                        )
         );
 
@@ -121,18 +132,26 @@ if (!mjrecaptcha) mjrecaptcha = {};
                        )
             ;
 
-        });// end each
+            //$("#mjrButtonTr")
+            //     .append($("<td/>")
+            //             .append($("<a/>")
+            //                     .html("牌を選択")
+            //                     .click(function(){console.log("hoge");})
+            //                    )
+            //            )
+            // ;
 
+        });// End each
 
 
     }
 
-   function viewPanel(){
-       var jq = $("<div/>")
-           .attr("align","center")
-           .attr("id","div_selectpanel")
-           .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
-           .css({
+    function viewPanel(){
+        var jq = $("<div/>")
+            .attr("align","center")
+            .attr("id","div_selectpanel")
+            .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
+            .css({
                display: "block",
                opacity: 0.9,
                width: 270,
@@ -150,7 +169,4 @@ if (!mjrecaptcha) mjrecaptcha = {};
        $("#mjrecaptcha").append(jq);
    }
 
-
-    mjrecaptcha.display = display;
-    mjrecaptcha.viewPanel = viewPanel;
 })();

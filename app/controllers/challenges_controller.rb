@@ -11,7 +11,7 @@ class ChallengesController < ApplicationController
 
   def verify
     challenge = Challenge.find_by(token: params[:challenge])
-    if challenge.verify_answer(params[:after].split(" "))
+    if challenge.verify_answer(params[:response].split(" "))
       render text: "true\nsuccess"
     else
       render text: "false\nbad:answer"

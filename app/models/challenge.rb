@@ -7,7 +7,7 @@ class Challenge
   field :true_challenge_id, type: Moped::BSON::ObjectId
 
   def verify_answer(answers)
-    true_challenge.collect?(answers[true_challenge])
+    true_challenge.collect?(answers[true_challenge_index])
   end
 
   def true_challenge
@@ -15,7 +15,7 @@ class Challenge
   end
 
   def true_challenge_index
-    index =  self.pai_positions.index(self.true_challenge_id)
+    index =  self.pai_positions.index(self.true_challenge_id.to_s)
     raise "can not find true challenge" if index.nil?
     index
   end

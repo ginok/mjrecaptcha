@@ -2,7 +2,7 @@ Mjrecaptcha::Application.routes.draw do
   resources :pai_positions
   resources :challenges, except: :index do
     collection do
-      get :verify
+      post :verify
     end
   end
 
