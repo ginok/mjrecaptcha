@@ -4,7 +4,7 @@ class ChallengesController < ApplicationController
   def new
   end
 
-  def create
+  def new_challenge
     @challenge = Challenge.generate_new
     respond_with @challenge, location: @challenge
   end
