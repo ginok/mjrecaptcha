@@ -5,4 +5,6 @@ Mjrecaptcha::Application.routes.draw do
       get :verify
     end
   end
+
+  get "recaptcha" => "statics#recaptcha"
 end

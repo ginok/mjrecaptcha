@@ -1,0 +1,131 @@
+﻿var Pai = function(type,direction){
+
+    Pai.WIDTH=23;
+    Pai.HEIGHT=32;
+    Pai.DIRECTION_TOP="t";
+    Pai.DIRECTION_LEFT="l";
+    Pai.DIRECTION_RIGHT="r";
+    Pai.DIRECTION_BOTTOM="b";
+    Pai.TYPE_EMPTY = "z0";
+    Pai.TYPE_REVERSE = "r0";
+    Pai.TYPE_LIST = [
+    "m1","m2","m3","m4","m5","m6","m7","m8","m9",
+    "p1","p2","p3","p4","p5","p6","p7","p8","p9",
+    "s1","s2","s3","s4","s5","s6","s7","s8","s9",
+    "j1","j2","j3","j4","j5","j6","j7",
+    Pai.TYPE_REVERSE];
+
+    this.type = type; //牌の種類　"p1" "j2"といった文字列
+    this.direction = direction; //牌の向き "t" "b" といった文字列
+
+    this.jq = function(zoom){
+        var jq = $("<img/>")
+            .attr('type',this.type)
+            .attr('direction',this.direction)
+            .attr('src',"img/pai/" + this.type +  this.direction +".gif");
+
+        if(arguments.length == 1){
+            if(this.isTate()){
+                jq.attr("width",Pai.WIDTH * zoom);
+                jq.attr("height",Pai.HEIGHT * zoom);
+            }else{
+                jq.attr("width",Pai.HEIGHT * zoom);
+                jq.attr("height",Pai.WIDTH * zoom);
+            }
+        }
+        return jq;
+    };
+
+
+    this.isEmpty = function(){
+        return this.type == Pai.TYPE_EMPTY;
+    };
+
+    this.toString = function(){
+        return this.type + this.direction;
+    };
+
+    this.isTate = function(){
+        return this.direction == Pai.DIRECTION_TOP || this.direction == Pai.DIRECTION_BOTTOM;
+    };
+
+};
+new Pai();//これをしないとクラス変数が見えない。
+
+
+var mjrecaptcha;
+if (!mjrecaptcha) mjrecaptcha = {};
+(function(){
+    function display(){
+        $.ajax({
+            type: "GET",
+            // url: "http://www.fedc.biz/cha.json",
+            url: "http://mjrecaptcha.com/challenges.json",
+            dataType: "jsonp",
+            jsonpCallback: "callback",
+            success:on_get_challenge,
+            error: function(xhr,status,err){
+                alert("ajax error: " + xhr + status + err);
+            }
+        });
+    }
+
+    function on_get_challenge(data){
+        $("#mjrecaptcha").append(
+            $("<table/>")
+                .append($("<tr/>")
+                        .attr("id","mjrQuestionTr")
+                        .css({"height":"40px"})
+                       )
+                .append($("<tr/>")
+                        .append($("<td/>")
+                                .attr("colspan",data.pai_positions.length)
+                                .html("何に見えますか？")
+                               )
+                       )
+                .append($("<tr/>")
+                        .attr("id","mjrAnswerTr")
+                        .append(
+                            $("<td/>")
+                                .attr("colspan",data.pai_positions.length)
+                                .append($("<input/>").attr("size",10).attr("name","response")))
+                       )
+        );
+
+        $.each(data.pai_positions, function(){
+
+            var _posi = $(this)[0];
+            console.log(_posi);
+
+            //画像
+            var imgJq = $("<img/>")
+                .attr("src",_posi.image_url)
+                .css({
+                    "position":"absolute",
+                    "left": ( - _posi.x ) + "px" ,
+                    "top": ( - _posi.y ) + "px" ,
+                    "clip":"rect(" +
+                        _posi.y + "px " +  //top
+                        (_posi.w + _posi.x) + "px " + //right
+                        (_posi.h + _posi.y) + "px " + //bottom
+                        _posi.x + "px " +  //left
+                        ")"
+                });//end css
+            $("#mjrQuestionTr")
+                .append($("<td/>")
+                        .css({"width":"40px","height":"50px"})
+                        .append($("<div/>")
+                                .append(imgJq)
+                                .css({"position":"relative","width":"100%","height":"100%"})
+                               )
+                       )
+            ;
+
+        });// end each
+
+
+
+    }
+
+    mjrecaptcha.display = display;
+})();
