@@ -22,7 +22,7 @@
         var jq = $("<img/>")
             .attr('type',this.type)
             .attr('direction',this.direction)
-            .attr('src',"img/pai/" + this.type +  this.direction +".gif");
+            .attr('src',"pai_image/" + this.type +  this.direction +".gif");
 
         if(arguments.length == 1){
             if(this.isTate()){
@@ -59,8 +59,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
     function display(){
         $.ajax({
             type: "GET",
-            // url: "http://www.fedc.biz/cha.json",
-            url: "http://mjrecaptcha.com/challenges.json",
+            url: "http://www.fedc.biz/cha.json",
+            //url: "http://mjrecaptcha.com/challenges.json",
             dataType: "jsonp",
             jsonpCallback: "callback",
             success:on_get_challenge,
@@ -127,5 +127,30 @@ if (!mjrecaptcha) mjrecaptcha = {};
 
     }
 
+   function viewPanel(){
+       var jq = $("<div/>")
+           .attr("align","center")
+           .attr("id","div_selectpanel")
+           .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
+           .css({
+               display: "block",
+               opacity: 0.9,
+               width: 270,
+               padding: 0,
+               top: window.pageYOffset+100
+           });
+       jq.append("<h1>牌を選択</h1>");
+       $.each(Pai.TYPE_LIST,function(){
+           var imgJq = new Pai(this,Pai.DIRECTION_TOP).jq(1)
+               .click(
+                   function(){
+                   });
+           jq.append(imgJq);
+       });
+       $("#mjrecaptcha").append(jq);
+   }
+
+
     mjrecaptcha.display = display;
+    mjrecaptcha.viewPanel = viewPanel;
 })();
