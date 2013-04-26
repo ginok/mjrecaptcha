@@ -1,4 +1,4 @@
-class PaiChallenge
+class Challenge
   include Mongoid::Document
   include Mongoid::Timestamps
   include Concerns::Tokenable
@@ -8,7 +8,7 @@ class PaiChallenge
 
   class << self
     def generate_new
-      challenge = PaiChallenge.new
+      challenge = Challenge.new
       true_challenge = get_identified_challenge
       debugger
       challenge.pai_positions << true_challenge
