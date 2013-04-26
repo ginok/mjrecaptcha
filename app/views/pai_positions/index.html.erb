@@ -1,0 +1,22 @@
+<table>
+  <th>image_url</th>
+  <th>x</th>
+  <th>y</th>
+  <th>width</th>
+  <th>height</th>
+  <th>identified</th>
+  <th>initial_probability</th>
+  <th>initial_pai_type</th>
+  <% @pai_positions.each do |p| %>
+    <tr>
+      <td><%= p.image_url %></td>
+      <td><%= p.x %></td>
+      <td><%= p.y %></td>
+      <td><%= p.width %></td>
+      <td><%= p.height %></td>
+      <td><%= p.identified %></td>
+      <td><%= p.initial_probability %></td>
+      <td><%= p.initial_pai_type %></td>
+    </tr>
+  <% end %>
+</table>
