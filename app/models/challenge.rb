@@ -10,7 +10,6 @@ class Challenge
     def generate_new
       challenge = Challenge.new
       true_challenge = get_identified_challenge
-      debugger
       challenge.pai_positions << true_challenge
       challenge.pai_positions << get_not_identified_challenge
       challenge.true_challenge_id = true_challenge.to_param
