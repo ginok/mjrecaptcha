@@ -10,4 +10,8 @@ class PaiPosition
   field :identified, type: Boolean, default: false
   field :initial_probability, type: Float
   field :initial_pai_type, type: String
+
+  def collect?(answer)
+    self.initial_pai_type == answer
+  end
 end

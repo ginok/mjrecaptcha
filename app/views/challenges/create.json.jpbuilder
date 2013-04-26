@@ -1,5 +1,6 @@
 json.token @challenge.token
-json.pai_positions @challenge.pai_positions do |pai_position|
+json.pai_positions @challenge.pai_positions do |position_id|
+  pai_position = PaiPosition.find(position_id)
   json.image_url pai_position.image_url
   json.x pai_position.x
   json.y pai_position.y
