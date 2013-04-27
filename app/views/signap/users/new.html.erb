@@ -1,0 +1,5 @@
+<%= flash[:notice] if flash[:notice] %>
+<%= form_for(@user, url: signap.users_path) do |f| %>
+  <%= f.email_field :email, placeholder: "Email" %>
+  <%= f.button "Sign Up", class: "btn" %>
+<% end %>
