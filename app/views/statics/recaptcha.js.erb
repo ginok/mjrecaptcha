@@ -8,12 +8,13 @@
     Pai.DIRECTION_BOTTOM="b";
     Pai.TYPE_EMPTY = "z0";
     Pai.TYPE_REVERSE = "r0";
+    Pai.TYPE_NOT_PAI = "n0";
     Pai.TYPE_LIST = [
     "m1","m2","m3","m4","m5","m6","m7","m8","m9",
     "p1","p2","p3","p4","p5","p6","p7","p8","p9",
     "s1","s2","s3","s4","s5","s6","s7","s8","s9",
     "j1","j2","j3","j4","j5","j6","j7",
-    Pai.TYPE_REVERSE];
+        Pai.TYPE_REVERSE];
 
     this.type = type; //牌の種類　"p1" "j2"といった文字列
     this.direction = direction; //牌の向き "t" "b" といった文字列
@@ -89,6 +90,9 @@ if (!mjrecaptcha) mjrecaptcha = {};
                         .css({"height":"40px"})
                        )
                 .append($("<tr/>")
+                        .attr("id","mjrButtonTr")
+                       )
+                .append($("<tr/>")
                         .attr("id","mjrAnswerTr")
                         .append(
                             $("<td/>")
@@ -100,9 +104,6 @@ if (!mjrecaptcha) mjrecaptcha = {};
                                                "value":"na na"
                                               })
                                        ))
-                       )
-                .append($("<tr/>")
-                        .attr("id","mjrButtonTr")
                        )
         );
 
@@ -184,6 +185,17 @@ if (!mjrecaptcha) mjrecaptcha = {};
            ;
            jq.append(imgJq);
        });
+        jq.append("<button>牌をに見えない場合はこちら</button>")
+            .click(function(){
+
+                console.log("gChallengePaiNo:" +  gChallengePaiNo + " select:" + "n0");
+                var _nowStr = $("#recaptcha_response_field").attr("value");
+                var _list = _nowStr.split(" ");
+                _list[gChallengePaiNo] = "n0";
+                $("#recaptcha_response_field").attr("value",_list.join(" "));
+                $("#div_selectpanel").hide();
+            })
+        ;
        $("body").append(jq);
    }
 
