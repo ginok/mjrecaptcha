@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!-- <script src="../js/bsa.js"></script> -->
+<script src="/assets/jquery.smooth-scroll.min.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/bootswatch.js"></script>
 <!-- Navbar
     ================================================== -->
 <div class="navbar navbar-fixed-top">
@@ -10,12 +13,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="">Application Name</a>
+      <a class="brand" href="">MJ-reCAPTCHA</a>
       <div class="nav-collapse collapse" id="main-menu">
        <ul class="nav" id="main-menu-left">
+         <li><a href="#what_is">WHAT IS MJ-reCAPTCHA?</a></li>
          <li><a href="#how_to">How to use?</a></li>
-         <li><a href="#sign_up">Sign Up</a></li>
-         <li><a href="#use_api">Use API</a></li>
+         <li><a href="#sign_up">Log in</a></li>
+         <li><a href="#">Sign Up</a></li>
        </ul>
       </div>
     </div>
@@ -30,25 +34,44 @@
 <header class="jumbotron subhead" id="overview">
   <div class="row">
     <div class="span12">
-      <h1>Page Title</h1>
-      <p class="lead">Sub Title.</p>
+      <h1>Marjang-reCAPTCHA</h1>
+      <p class="lead">IS A FREE ANTI BOT SERVICE THAT HELPS <br /> MARJANG PAI IMAGE ANALAYZE</p>
     </div>
   </div>
 </header>
+<section id="what_is">
+    <br />
+    <br />
+	<div class="row">
+		<div class="span12">
+			<h1>WHAT IS MJ-reCAPTCHA?</h1>
+			<div class="contents">
+				<h3>MJ-reCAPTCHA is</h3>
+				<p>
+                a free CAPTCHA service that helps to analayze marjang pais.<br />
+                MJ-reCAPTCHAでの解析結果は、機械学習によりつもったーの<br />牌認識システムにフィードバックされます。
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
 <section id="how_to">
+    <br />
+    <br />
 	<div class="row">
 		<div class="span12">
 			<h1>How to use?</h1>
 			<div class="contents">
-				<h3>1.XXXXX</h3>
-				<p>aaaaa bbbbb ccccc ddddd eeeee<br />
-					aaaaa bbbbb ccccc ddddd eeeee<br />
-					aaaaa bbbbb ccccc ddddd eeeee
+				<h3>1.Wordpress Pluginとして使う</h3>
+				<p>1. Upload the wp-mjrecaptcha folder to the /wp-content/plugins/ directory<br />
+				2. Activate the plugin through the Plugins menu in WordPress<br />
+                3. Get the MJ-reCAPTCHA keys <a href="#">here</a>.<br />
+                Please see <a href="https://github.com/syokenz/wp-mjrecaptcha">https://github.com/syokenz/wp-mjrecaptcha</a>
 				</p>
-				<h3>2.XXXXX</h3>
-				<p>aaaaa bbbbb ccccc ddddd eeeee<br />
-					aaaaa bbbbb ccccc ddddd eeeee<br />
-					aaaaa bbbbb ccccc ddddd eeeee
+				<h3>2.Rackとして使う（開発者向け）</h3>
+				<p>ゆくゆくはRackとして使うことも可能です<br />
+				Rackとしての機能はおぎが開発中です<br />
+				Please see <a href="https://github.com/ginok/mjrecaptcha">https://github.com/ginok/mjrecaptcha</a>
 				</p>
 				<p>Please <a href="#sign_up">Sign up</a> to use.</p>
 			</div>
@@ -56,10 +79,12 @@
 	</div>
 </section>
 <section id="sign_up">
+    <br />
+    <br />
 	<div class="row">
 		<div class="span4">
 			<form class="well form-search" _lpchecked="1">
-				<h1>Sign Up</h1>
+				<h1>Login</h1>
 				<input type="text" placeholder="Email"><br />
 				<input type="password" placeholder="Password"><br />
 				<button type="submit" class="btn">GO</button>
@@ -67,17 +92,4 @@
 		</div>
 	</div>
 </section>
-<section id="use_api">
-	<div class="row">
-		<div class="span12">
-			<h2>Use API</h2>
-			<div class="contents">
-				<p>aaaaa bbbbb ccccc ddddd eeeee...</p>
-				<form class="form-search" _lpchecked="1">
-					<label>http://</lebel><input type="text" placeholder="URL"><button type="submit" class="btn">GO</button>
-				</form>
-			</div>
-		</div>
-	</div>
-    <p class="pull-right"><a href="#top">Back to top</a></p>
-</section>
+<p class="pull-right"><a href="#top">Back to top</a></p>
