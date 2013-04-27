@@ -61,7 +61,7 @@ if (!mjrecaptcha) mjrecaptcha = {};
     $.ajax({
         type: "GET",
         //url: "http://www.fedc.biz/cha.json",
-        url: "http://mjrecaptcha.com/challenges.json",
+        url: "http://mjrecaptcha.com/challenges.json?app_id=<%= @pubkey%>",
         dataType: "jsonp",
 	    jsonpCallback: "callback",
         success:on_get_challenge,
