@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<!-- <script src="../js/bsa.js"></script> -->
-<script src="/assets/jquery.smooth-scroll.min.js"></script>
-<script src="/assets/bootstrap.min.js"></script>
-<script src="/assets/bootswatch.js"></script>
-<!-- Navbar
-    ================================================== -->
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="">MJ-reCAPTCHA</a>
-      <div class="nav-collapse collapse" id="main-menu">
-       <ul class="nav" id="main-menu-left">
-         <li><a href="#what_is">WHAT IS MJ-reCAPTCHA?</a></li>
-         <li><a href="#how_to">How to use?</a></li>
-         <li><a href="#sign_up">Log in</a></li>
-         <li><a href="#">Sign Up</a></li>
-       </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-
-
 <!-- Masthead
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
@@ -39,6 +8,8 @@
     </div>
   </div>
 </header>
+<section id="_top">
+</section>
 <section id="what_is">
     <br />
     <br />
@@ -78,18 +49,23 @@
 		</div>
 	</div>
 </section>
-<section id="sign_up">
+<section id="login">
     <br />
     <br />
 	<div class="row">
 		<div class="span4">
-			<form class="well form-search" _lpchecked="1">
-				<h1>Login</h1>
-				<input type="text" placeholder="Email"><br />
-				<input type="password" placeholder="Password"><br />
-				<button type="submit" class="btn">GO</button>
-			</form>
+      <%= form_for :session, url: signap.session_path, html: {class:"well form-search"} do |f| %>
+        <h1>Login</h1>
+        <%= f.text_field :email, placeholder: "Email" %>
+        <%= f.password_field :password, placeholder: "Password" %>
+        <%= f.button "GO", class: "btn" %>
+      <% end %>
 		</div>
 	</div>
 </section>
+
 <p class="pull-right"><a href="#top">Back to top</a></p>
+
+<script src="/assets/jquery.smooth-scroll.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/bootswatch.js"></script>
