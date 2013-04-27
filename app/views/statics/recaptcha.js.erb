@@ -68,6 +68,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
         }
     });
 
+    var gChallengePaiNo = "";
+
     function on_get_challenge(data){
         $("#commentform")
             .append($("<input/>")
@@ -77,14 +79,14 @@ if (!mjrecaptcha) mjrecaptcha = {};
             .append(
             $("<table/>")
                 .append($("<tr/>")
-                        .attr("id","mjrQuestionTr")
-                        .css({"height":"40px"})
-                       )
-                .append($("<tr/>")
                         .append($("<td/>")
                                 .attr("colspan",data.pai_positions.length)
-                                .html("何のパイに見えますか？")
+                                .html("何のパイに見えますか？選択してください")
                                )
+                       )
+                .append($("<tr/>")
+                        .attr("id","mjrQuestionTr")
+                        .css({"height":"40px"})
                        )
                 .append($("<tr/>")
                         .attr("id","mjrAnswerTr")
@@ -93,8 +95,9 @@ if (!mjrecaptcha) mjrecaptcha = {};
                                 .attr("colspan",data.pai_positions.length)
                                 .append($("<input/>")
                                         .attr({"size":10,
-                                               "value":"j7 p6",
-                                               "name":"recaptcha_response_field"
+                                               "id" : "recaptcha_response_field",
+                                               "name":"recaptcha_response_field",
+                                               "value":"na na"
                                               })
                                        ))
                        )
@@ -103,8 +106,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
                        )
         );
 
+        var _no = 0;
         $.each(data.pai_positions, function(){
-
             var _posi = $(this)[0];
             console.log(_posi);
 
@@ -131,27 +134,28 @@ if (!mjrecaptcha) mjrecaptcha = {};
                                )
                        )
             ;
-
             $("#mjrButtonTr")
                 .append($("<td/>")
-                        .append($("<a/>")
+                        .append(
+                            $("<a/>")
+                                .attr("no",_no)
                                 .html("牌を選択")
                                 .click(function(){
-                                    viewPanel();
+                                    $("#div_selectpanel").show();
+                                    gChallengePaiNo = $(this).attr("no");
                                 })
                                )
                        )
             ;
-
+            _no++;
         });// End each
-    }
 
-    function viewPanel(){
         console.log("viewPanel");
         var jq = $("<div/>")
             .attr("align","center")
             .attr("id","div_selectpanel")
             .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
+            .hide()
             .css({
                 "position":"absolute",
                 "opacity":"0.9",
@@ -168,9 +172,16 @@ if (!mjrecaptcha) mjrecaptcha = {};
        jq.append("<p>牌を選択してください</p>");
        $.each(Pai.TYPE_LIST,function(){
            var imgJq = new Pai(this,Pai.DIRECTION_TOP).jq(1)
-               .click(
-                   function(){
-                   });
+               .click(function(){
+
+                   console.log("gChallengePaiNo:" +  gChallengePaiNo + " select:" + $(this).attr("type"));
+                   var _nowStr = $("#recaptcha_response_field").attr("value");
+                   var _list = _nowStr.split(" ");
+                   _list[gChallengePaiNo] = $(this).attr("type");
+                   $("#recaptcha_response_field").attr("value",_list.join(" "));
+                   $("#div_selectpanel").hide();
+               })
+           ;
            jq.append(imgJq);
        });
        $("body").append(jq);
