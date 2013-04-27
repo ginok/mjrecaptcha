@@ -1,0 +1,55 @@
+/** custom.css */
+body {
+	background-image: none;
+	background-color: #148155;
+}
+section {
+	padding: 0;
+	margin-top: 50px;
+}
+a {
+	color: #D39C38;
+}
+header {
+	position: fixed;
+	text-align: right;
+}
+.contents {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+/** sign_up */
+#sign_up .well {
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	border: 2px solid #AD1D28;
+}
+#sign_up .well h1 {
+	color: #AD1D28;
+	margin: 0 0 20px;
+}
+#sign_up input[type="text"],
+#sign_up input[type="password"] {
+	border: 1px solid #AD1D28;
+	margin-bottom: 10px;
+	width: 95%;
+}
+#sign_up button {
+	width: 100%;
+	margin: 0;
+	background-color: #AD1D28;
+	color: #FFFFFF;
+}
+
+/** use_api */
+#use_api label {
+	font-size: 20px;
+	height: 30px;
+}
+#use_api input {
+	margin: 0 5px;
+}
+#use_api button {
+	padding: 4px 15px;
+}

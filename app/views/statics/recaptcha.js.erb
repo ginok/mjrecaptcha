@@ -58,8 +58,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
 (function(){
     $.ajax({
         type: "GET",
-        //url: "http://www.fedc.biz/cha.json",
-        url: "http://mjrecaptcha.com/challenges.json",
+        url: "http://www.fedc.biz/cha.json",
+        //url: "http://mjrecaptcha.com/challenges.json",
         dataType: "jsonp",
 	    jsonpCallback: "callback",
         success:on_get_challenge,
@@ -67,6 +67,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
             alert("ajax error: " + xhr + status + err);
         }
     });
+
+    var gChallengePaiNo = "";
 
     function on_get_challenge(data){
         $("#commentform")
@@ -77,14 +79,14 @@ if (!mjrecaptcha) mjrecaptcha = {};
             .append(
             $("<table/>")
                 .append($("<tr/>")
-                        .attr("id","mjrQuestionTr")
-                        .css({"height":"40px"})
-                       )
-                .append($("<tr/>")
                         .append($("<td/>")
                                 .attr("colspan",data.pai_positions.length)
-                                .html("何のパイに見えますか？")
+                                .html("何のパイに見えますか？選択してください")
                                )
+                       )
+                .append($("<tr/>")
+                        .attr("id","mjrQuestionTr")
+                        .css({"height":"40px"})
                        )
                 .append($("<tr/>")
                         .attr("id","mjrAnswerTr")
@@ -93,8 +95,9 @@ if (!mjrecaptcha) mjrecaptcha = {};
                                 .attr("colspan",data.pai_positions.length)
                                 .append($("<input/>")
                                         .attr({"size":10,
-                                               "value":"j7 p6",
-                                               "name":"recaptcha_response_field"
+                                               "id" : "recaptcha_response_field",
+                                               "name":"recaptcha_response_field",
+                                               "value":"na na"
                                               })
                                        ))
                        )
@@ -103,8 +106,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
                        )
         );
 
+        var _no = 0;
         $.each(data.pai_positions, function(){
-
             var _posi = $(this)[0];
             console.log(_posi);
 
@@ -131,42 +134,57 @@ if (!mjrecaptcha) mjrecaptcha = {};
                                )
                        )
             ;
-
-            //$("#mjrButtonTr")
-            //     .append($("<td/>")
-            //             .append($("<a/>")
-            //                     .html("牌を選択")
-            //                     .click(function(){console.log("hoge");})
-            //                    )
-            //            )
-            // ;
-
+            $("#mjrButtonTr")
+                .append($("<td/>")
+                        .append(
+                            $("<a/>")
+                                .attr("no",_no)
+                                .html("牌を選択")
+                                .click(function(){
+                                    $("#div_selectpanel").show();
+                                    gChallengePaiNo = $(this).attr("no");
+                                })
+                               )
+                       )
+            ;
+            _no++;
         });// End each
 
-
-    }
-
-    function viewPanel(){
+        console.log("viewPanel");
         var jq = $("<div/>")
             .attr("align","center")
             .attr("id","div_selectpanel")
             .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
+            .hide()
             .css({
-               display: "block",
-               opacity: 0.9,
-               width: 270,
-               padding: 0,
-               top: window.pageYOffset+100
-           });
-       jq.append("<h1>牌を選択</h1>");
+                "position":"absolute",
+                "opacity":"0.9",
+                "background-color":"white",
+                "border-radius":"5px",
+                "border-style":"solid",
+                "border-width":"1px",
+                "border-color":"black",
+                "width": "210px",
+                "padding": "20px",
+                "box-shadow": "5px 5px 5px 5px rgba(0,0,0,0.4)",
+                "top": window.pageYOffset+10
+            });
+       jq.append("<p>牌を選択してください</p>");
        $.each(Pai.TYPE_LIST,function(){
            var imgJq = new Pai(this,Pai.DIRECTION_TOP).jq(1)
-               .click(
-                   function(){
-                   });
+               .click(function(){
+
+                   console.log("gChallengePaiNo:" +  gChallengePaiNo + " select:" + $(this).attr("type"));
+                   var _nowStr = $("#recaptcha_response_field").attr("value");
+                   var _list = _nowStr.split(" ");
+                   _list[gChallengePaiNo] = $(this).attr("type");
+                   $("#recaptcha_response_field").attr("value",_list.join(" "));
+                   $("#div_selectpanel").hide();
+               })
+           ;
            jq.append(imgJq);
        });
-       $("#mjrecaptcha").append(jq);
+       $("body").append(jq);
    }
 
 })();
