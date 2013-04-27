@@ -16,7 +16,7 @@
          <li><a href="#what_is">WHAT IS MJ-reCAPTCHA?</a></li>
          <li><a href="#how_to">How to use?</a></li>
          <li><a href="#login">Log in</a></li>
-         <li><a href="#">Sign Up</a></li>
+         <li><%= link_to("Sign Up", signap.sign_up_path) %></li>
        </ul>
       </div>
     </div>
@@ -84,7 +84,7 @@
 		<div class="span4">
       <%= form_for :session, url: signap.session_path, html: {class:"well form-search"} do |f| %>
         <h1>Login</h1>
-        <%= f.email_field :email, placeholder: "Email" %>
+        <%= f.text_field :email, placeholder: "Email" %>
         <%= f.password_field :password, placeholder: "Password" %>
         <%= f.button "GO", class: "btn" %>
       <% end %>
