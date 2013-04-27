@@ -7,7 +7,14 @@ class Challenge
   field :true_challenge_id, type: Moped::BSON::ObjectId
 
   def verify_answer(answers)
+    answers.each_with_index do |answer, i|
+      self.pai_position(i).store_answer(answer)
+    end
     true_challenge.collect?(answers[true_challenge_index])
+  end
+
+  def pai_position(index)
+    PaiPosition.find(self.pai_positions[index])
   end
 
   def true_challenge

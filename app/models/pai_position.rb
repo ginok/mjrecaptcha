@@ -1,6 +1,7 @@
 class PaiPosition
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Concerns::PaiPositionStat
 
   field :image_url, type: String
   field :x, type: Integer
