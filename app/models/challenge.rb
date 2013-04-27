@@ -3,6 +3,7 @@ class Challenge
   include Mongoid::Timestamps
   include Concerns::Tokenable
 
+  belongs_to :user
   field :pai_positions, type: Array, default: []
   field :true_challenge_id, type: Moped::BSON::ObjectId
 
@@ -27,9 +28,14 @@ class Challenge
     index
   end
 
+  def valid_user?(user)
+    self.user == user
+  end
+
   class << self
-    def generate_new
+    def generate_new(user)
       challenge = Challenge.new
+      challenge.user = user
       true_challenge = get_identified_challenge
 
 

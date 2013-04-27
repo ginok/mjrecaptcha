@@ -4,6 +4,7 @@ class User
   include Signap::User
   include Signap::Confirmable
   include Signap::Omniauthable
+  include Concerns::ApiUser
 
   field :domain, type: String
 
