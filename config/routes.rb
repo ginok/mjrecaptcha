@@ -1,6 +1,8 @@
 Mjrecaptcha::Application.routes.draw do
   mount Signap::Engine, at: '/'
 
+  resource :user
+
   resources :pai_positions
 
   resources :challenges, except: :index do
