@@ -8,7 +8,7 @@ class Challenge
 
   def verify_answer(answers)
     answers.each_with_index do |answer, i|
-      self.pai_position(i).store_answer(answer)
+      self.pai_position(i).store_answer!(answer)
     end
     true_challenge.collect?(answers[true_challenge_index])
   end
