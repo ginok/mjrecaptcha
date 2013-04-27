@@ -59,8 +59,8 @@ if (!mjrecaptcha) mjrecaptcha = {};
 (function(){
     $.ajax({
         type: "GET",
-        url: "http://www.fedc.biz/cha.json",
-        //url: "http://mjrecaptcha.com/challenges.json",
+        //url: "http://www.fedc.biz/cha.json",
+        url: "http://mjrecaptcha.com/challenges.json",
         dataType: "jsonp",
 	    jsonpCallback: "callback",
         success:on_get_challenge,
@@ -158,7 +158,7 @@ if (!mjrecaptcha) mjrecaptcha = {};
             .attr("class",'ui-loader  ui-overlay-shadow ui-body-b ui-corner-all')
             .hide()
             .css({
-                "position":"absolute",
+                "position":"fixed",
                 "opacity":"0.9",
                 "background-color":"white",
                 "border-radius":"5px",
