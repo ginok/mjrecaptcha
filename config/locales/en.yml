@@ -20,5 +20,32 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  layout:
+    what_is: "What is MJ-reCAPTCHA?"
+    how_to: "How to use?" 
+    login: "Login"
+    logout: "Logout"
+    sign_up: "Sign Up"
+    en: "En"
+    ja: "Ja"
   view:
     hello: "Hello world"
+    IS_A_FREE_ANTI_BOT_SERVICE_THAT_HELPS: "IS A FREE ANTI BOT SERVICE THAT HELPS"
+    MAHJONG_PAI_IMAGE_ANALAYZE: "MAHJONG PAI IMAGE ANALAYZE"
+    what_is_01: "is a free CAPTCHA service that helps to analayze mahjong pais."
+    what_is_02: "Analysis results in the MJ-reCAPTCHA is feed back to the Pai Recognition"
+    what_is_03: "System of Tsumotter by machine learning."
+    how_to_wp_plugin: "1. How to use for Wordpress Plugin"
+    how_to_wp_plugin_01: "1. Upload the wp-mjrecaptcha folder to the /wp-content/plugins/ directory"
+    how_to_wp_plugin_02: "2. Activate the plugin through the Plugins menu in WordPress"
+    how_to_wp_plugin_03: "3. Get the MJ-reCAPTCHA keys here"
+    please_see: "Please see "
+    how_to_rack: "2. How to use to Rack"
+    how_to_rack_01: "Future works"
+    how_to_rack_02: "Ken Ogino is developing now"
+    go: "GO"
+    back_to_top: "Back to top"
+
+
+
+

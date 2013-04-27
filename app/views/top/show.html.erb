@@ -4,22 +4,21 @@
   <div class="row">
     <div class="span12">
       <h1>Mahjong-reCAPTCHA</h1>
-      <p class="lead">IS A FREE ANTI BOT SERVICE THAT HELPS <br /> MAHJONG PAI IMAGE ANALAYZE</p>
+      <p class="lead"><%= t('view.IS_A_FREE_ANTI_BOT_SERVICE_THAT_HELPS') %> <br /> <%= t('view.MAHJONG_PAI_IMAGE_ANALAYZE') %></p>
     </div>
   </div>
 </header>
-<%= t('view.hello') %>
 <section id="what_is">
-    <br />
-    <br />
+    <img src="/images/mjrecaptcha.png" width="500"/>
 	<div class="row">
 		<div class="span12">
-			<h1>WHAT IS MJ-reCAPTCHA?</h1>
+			<h1><%= t('layout.what_is') %></h1>
 			<div class="contents">
-				<h3>MJ-reCAPTCHA is</h3>
+				<h3>MJ-reCAPTCHA</h3>
 				<p>
-                a free CAPTCHA service that helps to analayze mahjong pais.<br />
-                MJ-reCAPTCHAでの解析結果は、機械学習によりつもったーの<br />牌認識システムにフィードバックされます。
+                <%= t('view.what_is_01') %> <br />
+                <%= t('view.what_is_02') %> <br />
+                <%= t('view.what_is_03') %> 
 				</p>
 			</div>
 		</div>
@@ -30,20 +29,19 @@
     <br />
 	<div class="row">
 		<div class="span12">
-			<h1>How to use?</h1>
+			<h1><%= t('layout.how_to') %></h1>
 			<div class="contents">
-				<h3>1.Wordpress Pluginとして使う</h3>
-				<p>1. Upload the wp-mjrecaptcha folder to the /wp-content/plugins/ directory<br />
-				2. Activate the plugin through the Plugins menu in WordPress<br />
-                3. Get the MJ-reCAPTCHA keys <a href="#">here</a>.<br />
-                Please see <a href="https://github.com/syokenz/wp-mjrecaptcha">https://github.com/syokenz/wp-mjrecaptcha</a>
+				<h3><%= t('view.how_to_wp_plugin') %></h3>
+				<p><%= t('view.how_to_wp_plugin_01') %><br />
+				   <%= t('view.how_to_wp_plugin_02') %><br />
+				   <%= t('view.how_to_wp_plugin_03') %><br />
+				   <%= t('view.please_see') %> <a href="https://github.com/syokenz/wp-mjrecaptcha">https://github.com/syokenz/wp-mjrecaptcha</a>
 				</p>
-				<h3>2.Rackとして使う（開発者向け）</h3>
-				<p>ゆくゆくはRackとして使うことも可能です<br />
-				Rackとしての機能はおぎが開発中です<br />
-				Please see <a href="https://github.com/ginok/mjrecaptcha">https://github.com/ginok/mjrecaptcha</a>
+                <h3><%= t('view.how_to_rack') %></h3>
+				<p><%= t('view.how_to_rack_01') %><br />
+				   <%= t('view.how_to_rack_02') %><br />
+				   <%= t('view.please_see') %>  <a href="https://github.com/ginok/mjrecaptcha">https://github.com/ginok/mjrecaptcha</a>
 				</p>
-				<p>Please <a href="#sign_up">Sign up</a> to use.</p>
 			</div>
 		</div>
 	</div>
@@ -54,16 +52,16 @@
 	<div class="row">
 		<div class="span4">
       <%= form_for :session, url: signap.session_path, html: {class:"well form-search"} do |f| %>
-        <h1>Login</h1>
+        <h1><%= t('layout.login') %></h1>
         <%= f.text_field :email, placeholder: "Email" %>
         <%= f.password_field :password, placeholder: "Password" %>
-        <%= f.button "GO", class: "btn" %>
+        <%= f.button t('view.go'), class: "btn" %>
       <% end %>
 		</div>
 	</div>
 </section>
 
-<p class="pull-right"><a href="#top">Back to top</a></p>
+<p class="pull-right"><a href="#top"><%= t('view.back_to_top') %></a></p>
 
 <script src="/assets/jquery.smooth-scroll.js"></script>
 <script src="/assets/bootstrap.min.js"></script>
