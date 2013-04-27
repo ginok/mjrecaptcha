@@ -44,14 +44,14 @@ class Challenge
     def get_identified_challenge
       count = PaiPosition.identified.count
       if count > 0
-        PaiPosition.skip(rand(count)).first
+        PaiPosition.identified.skip(rand(count)).first
       else
         PaiPosition.max_probability
       end
     end
 
     def get_not_identified_challenge
-      PaiPosition.skip(rand(PaiPosition.not_identified.count)).first
+      PaiPosition.not_identified.skip(rand(PaiPosition.not_identified.count)).first
     end
   end
 end

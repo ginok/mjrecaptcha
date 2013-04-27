@@ -10,6 +10,7 @@
   <th>initial_probability</th>
   <th>initial_pai_type</th>
   <th>Action</th>
+  <th>Delete!!</th>
   <th>Times</th>
   <th>Top 3</th>
   <% @pai_positions.each do |p| %>
@@ -27,6 +28,7 @@
       <td><%= p.initial_probability %></td>
       <td><%= p.initial_pai_type %></td>
       <td><%= link_to "Identify", identify_admin_pai_position_path(p), method: :put %></td>
+      <td><%= link_to "Delete!!", admin_pai_position_path(p), method: :delete%></td>
       <td><%= p.challenge_times %></td>
       <td><%= p.top(3) %></td>
     </tr>

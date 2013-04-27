@@ -11,4 +11,10 @@ class Admin::PaiPositionsController < ApplicationController
       redirect_to admin_pai_positions_path, notice: "Fail to identify!"
     end
   end
+
+  def destroy
+    pai_position = PaiPosition.find(params[:id])
+    pai_position.destroy
+    redirect_to admin_pai_positions_path, notice: "Deleted!"
+  end
 end

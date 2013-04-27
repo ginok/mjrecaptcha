@@ -88,22 +88,18 @@ if (!mjrecaptcha) mjrecaptcha = {};
                            "value":data.token}))
             .append($("<div/>")
                     .attr("id","mjrQuestionTr")
-                    .css({"height":"40px",
-
-                "background-color":"green",
-                "border-radius":"5px",
-                "border-style":"solid",
-                "border-width":"1px",
-                "border-color":"gray",
-                "padding": "20px",
-                "box-shadow": "1px 1px 1px 1px rgba(0,0,0,0.4)"
-
+                    .css({
+                        "background-image": "url(http://mjrecaptcha.com/images/back.png)",
+                        "width":"312px",
+                        "height":"71px",
+                        "background-size":"333px 98px",
+                        "padding-top": "25px",
+                        "padding-left": "20px"
                          })
                    )
             .append($("<input/>")
-                    .attr({
+                    .attr({"type":"hidden",
                         "size":10,
-//                        "type":"hidden",
                         "id" : "recaptcha_response_field",
                         "name":"recaptcha_response_field",
                         "value":"na na"
