@@ -14,6 +14,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 gem 'jpbuilder'
 gem 'mongoid', github: 'mongoid/mongoid', ref: '93284ce6e1f658c3f57076af9a8e5dce96082dbb'
+gem 'signap', path: './signap'
+gem 'omniauth-facebook'
+gem 'bcrypt-ruby'
+gem 'haml'
 
 group :development, :test do
   gem 'debugger'
