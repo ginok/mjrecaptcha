@@ -83,12 +83,12 @@
     <br />
 	<div class="row">
 		<div class="span4">
-			<form class="well form-search" _lpchecked="1">
-				<h1>Login</h1>
-				<input type="text" placeholder="Email"><br />
-				<input type="password" placeholder="Password"><br />
-				<button type="submit" class="btn">GO</button>
-			</form>
+      <%= form_for :session, url: signap.session_path, html: {class:"well form-search"} do |f| %>
+        <h1>Login</h1>
+        <%= f.email_field :email, placeholder: "Email" %>
+        <%= f.password_field :password, placeholder: "Password" %>
+        <%= f.button "GO", class: "btn" %>
+      <% end %>
 		</div>
 	</div>
 </section>
