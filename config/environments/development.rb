@@ -22,7 +22,7 @@ Mjrecaptcha::Application.configure do
     :port                 => 587,
     :domain               => 'localhost',
     :user_name            => 'redmine.fedc',
-    :password             => 'basukegashitaidesu',
+    :password             => '',
     :authentication       => 'plain',
     :enable_starttls_auto => true,
   }
