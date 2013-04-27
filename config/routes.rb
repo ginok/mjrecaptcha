@@ -6,6 +6,7 @@ Mjrecaptcha::Application.routes.draw do
     end
   end
 
+  get "/" => "top#show"
   get "challenges" => "challenges#new_challenge"
   get "recaptcha" => "statics#recaptcha"
 end
