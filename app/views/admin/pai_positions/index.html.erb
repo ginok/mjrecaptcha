@@ -1,0 +1,30 @@
+<%= notice if notice %>
+
+<table>
+  <th>image_url</th>
+  <th>x</th>
+  <th>y</th>
+  <th>width</th>
+  <th>height</th>
+  <th>identified</th>
+  <th>initial_probability</th>
+  <th>initial_pai_type</th>
+  <th>Action</th>
+  <% @pai_positions.each do |p| %>
+    <tr>
+      <td>
+        <%= content_tag(:span, style: "display: inline-block; position: relative; height: 100%") do %>
+          <%= image_tag(p.image_url, style: "position: absolute; left: #{(-p.x).to_s}px; top: #{(-p.y).to_s}px; clip: rect(#{p.y}px #{p.width + p.x}px #{p.height + p.y}px #{p.x}px)") %>
+        <% end %>
+      </td>
+      <td><%= p.x %></td>
+      <td><%= p.y %></td>
+      <td><%= p.width %></td>
+      <td><%= p.height %></td>
+      <td><%= p.identified %></td>
+      <td><%= p.initial_probability %></td>
+      <td><%= p.initial_pai_type %></td>
+      <td><%= link_to "Identify", identify_admin_pai_position_path(p), method: :put %></td>
+    </tr>
+  <% end %>
+</table>
