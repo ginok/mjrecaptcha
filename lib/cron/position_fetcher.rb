@@ -6,6 +6,7 @@ class Cron::PositionFetcher
       open("http://mjt.fedc.biz/pai_positions.json") do |f|
         JSON.parse(f.read).each do |pai|
           pi = pai["pai_position"]
+          if pi["initial_probability"] < 0.8
           PaiPosition.create(
             image_url: pi["image_url"],
             x: pi["x"],
@@ -15,6 +16,7 @@ class Cron::PositionFetcher
             initial_probability: pi["initial_probability"],
             initial_pai_type: pi["initial_pai_type"]
           )
+          end
         end
       end
     end

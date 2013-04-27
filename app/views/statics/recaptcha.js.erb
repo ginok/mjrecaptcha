@@ -82,35 +82,21 @@ if (!mjrecaptcha) mjrecaptcha = {};
                     .attr({"type":"hidden",
                            "name":"recaptcha_challenge_field",
                            "value":data.token}))
-            .append(
-            $("<table/>")
-                .append($("<tr/>")
-                        .append($("<td/>")
-                                .attr("colspan",data.pai_positions.length)
-                                .html("何のパイに見えますか？選択してください")
-                               )
-                       )
-                .append($("<tr/>")
-                        .attr("id","mjrQuestionTr")
-                        .css({"height":"40px"})
-                       )
-                .append($("<tr/>")
-                        .attr("id","mjrButtonTr")
-                       )
-                .append($("<tr/>")
-                        .attr("id","mjrAnswerTr")
-                        .append(
-                            $("<td/>")
-                                .attr("colspan",data.pai_positions.length)
-                                .append($("<input/>")
-                                        .attr({"size":10,
-                                               "id" : "recaptcha_response_field",
-                                               "name":"recaptcha_response_field",
-                                               "value":"na na"
-                                              })
-                                       ))
-                       )
-        );
+            .append($("<div/>")
+                    .attr("id","mjrQuestionTr")
+                    .css({
+                        "background-image": "url(http://mjrecaptcha.com/images/back.png)"
+                         })
+                   )
+            .append($("<input/>")
+                    .attr({
+                        "type":"hidden",
+                        "size":10,
+                        "id" : "recaptcha_response_field",
+                        "name":"recaptcha_response_field",
+                        "value":"na na"
+                    })
+                   );
 
         var _no = 0;
         $.each(data.pai_positions, function(){
