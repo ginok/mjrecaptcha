@@ -14,7 +14,7 @@ class ChallengesController < ApplicationController
     if challenge.verify_answer(params[:response].split(" "))
       render text: "true\nsuccess"
     else
-      render text: "false\nbad:answer"
+      render text: "false\nincorrect-captcha-sol"
     end
   end
 
