@@ -35,7 +35,7 @@ en:
     what_is_01: "is a free CAPTCHA service that helps to analayze mahjong pais."
     what_is_02: "Analysis results in the MJ-reCAPTCHA is feed back to the Pai Recognition"
     what_is_03: "System of Tsumotter by machine learning."
-    how_to_wp_plugin: "1. How to use for Wordpress Plugin"
+    how_to_wp_plugin: "1. How to use for WordPress Plugin"
     how_to_wp_plugin_01: "1. Upload the wp-mjrecaptcha folder to the /wp-content/plugins/ directory"
     how_to_wp_plugin_02: "2. Activate the plugin through the Plugins menu in WordPress"
     how_to_wp_plugin_03: "3. Get the MJ-reCAPTCHA keys here"
