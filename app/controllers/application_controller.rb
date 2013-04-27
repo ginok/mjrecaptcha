@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def extract_locale_from_subdomain
-    parsed_locale = request.subdomains.first
+    parsed_locale = request.subdomains.first || I18n.default_locale
     I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale : I18n.default_locale
   end
 end
