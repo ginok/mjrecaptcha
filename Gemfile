@@ -18,6 +18,7 @@ gem 'signap', path: './signap'
 gem 'omniauth-facebook'
 gem 'bcrypt-ruby'
 gem 'haml'
+gem 'whenever'
 
 group :development, :test do
   gem 'debugger'

@@ -11,6 +11,7 @@ class PaiPosition
   field :identified, type: Boolean, default: false
   field :initial_probability, type: Float
   field :initial_pai_type, type: String
+  field :original_created_at, type: DateTime
 
   scope :identified, -> { where(identified: true) }
   scope :not_identified, -> { where(identified: false) }
