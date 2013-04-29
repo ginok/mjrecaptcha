@@ -3,8 +3,10 @@ require 'open-uri'
 class Cron::PositionFetcher
   class << self
     def fetch_and_store_positions
+      Rails.logger.info("start to fetch possitions")
       from = last_created_time
-      open("http://mjt.fedc.biz/pai_positions.json?from=#{from}") do |f|
+      Rails.logger.info("start from=#{from}")
+      open("http://mjt.fedc.biz/pai_positions.json?from=#{Rack::Utils.escape(from)}") do |f|
         JSON.parse(f.read).each do |pai|
           pi = pai["pai_position"]
           if pi["initial_probability"] < 0.8
@@ -21,6 +23,10 @@ class Cron::PositionFetcher
           end
         end
       end
+      Rails.logger.info("finish to fetch possitions")
+    rescue => e
+      Rails.logger.error(e.message)
+      Rails.logger.error(e.backtrace)
     end
 
     def last_created_time
